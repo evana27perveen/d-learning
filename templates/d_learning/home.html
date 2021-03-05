@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block link %}
+    {% load static %}
+    {% load custom_filters %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+{% endblock %}
+
+{% block body %}
+    <div class="box">
+        <div class="container">
+
+            <div class="row">
+                {% for post in posts %}
+                    <div class="col-md-4 mb-5">
+                        <!---- Card Maloy ---->
+                        <div class="card h-100">
+                            <img src="{{ post.blog_image.url }}" class="card-img-top" alt="blog_image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                                <h6>{{ post.author }}</h6>
+                                <h6>{{ post.datenow }}</h6>
+                                <p class="card-text">{{ post.content|range_filter|linebreaks }}</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{ post.id }}">Read
+                                    more
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal{{ post.id }}" role="dialog">
+                            <div class="modal-dialog modal-lg">
+
+                                <!-- Modal content-->
+                                <div class="box-part text-center" style="border-style: dotted">
+                                    <img class="img-fluid" style="width: 200px; height: 200px;"
+                                         src="{{ post.blog_image.url }}">
+
+                                    <!--<i class="fa fa-instagram fa-3x" aria-hidden="true"></i>-->
+                                    <div class="card-body">
+                                        <div class="title">
+                                            <h4>{{ post.title }}</h4>
+                                        </div>
+
+                                        <div class="text">
+                                            <h5>{{ post.author }}</h5>
+                                            <h6>{{ post.datenow }}</h6>
+                                            <span>{{ post.content|linebreaks }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
