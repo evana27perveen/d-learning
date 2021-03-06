@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'wn3j(kjvohvq77oz2vzqeoh7r77#oypl84r#t6sihah0yxs&+='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['learning-with-eva', '127.0.0.1']
 
 
 # Application definition
